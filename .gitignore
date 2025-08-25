@@ -1,0 +1,60 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Output files
+*.out
+
+# Go workspace and temporary files
+*.log
+*.tmp
+*.test
+*.prof
+*.cov
+
+# Directories for Go modules and dependencies
+/vendor/
+Gopkg.lock
+Gopkg.toml
+
+# Go build cache
+*.o
+*.a
+
+# Binary output
+/bin/
+/build/
+/dist/
+
+# Coverage files
+*.coverprofile
+*.coverage
+
+# IDE and editor settings
+.idea/
+.vscode/
+*.iml
+
+# Environment files
+.env
+.env.*
+
+# Go mod specific
+go.sum
+
+# Debugging files
+*.trace
+*.pprof
+
+# Docker and containerization
+docker-compose.override.yml
+.env.docker.local
+
+# MacOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+desktop.ini

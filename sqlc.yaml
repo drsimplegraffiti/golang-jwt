@@ -1,0 +1,12 @@
+version: "2"
+sql:
+  - engine: "postgresql"  # Change this from "mysql" to "postgresql"
+    queries: "internal/migrations/queries.sql"  # This file will contain your SQL queries
+    schema: "internal/migrations/schema.sql"    # This file will contain your schema (tables)
+    gen:
+      go:
+        package: "store"                       # Go package for the generated code
+        out: "internal/store"                   # Output directory for generated Go files
+        emit_json_tags: true                    # Optionally, emit JSON tags
+        emit_prepared_queries: true             # Emit prepared statements for safety
+        emit_empty_slices: true                 # Emit empty slices for collections
