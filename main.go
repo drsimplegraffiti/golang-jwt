@@ -24,8 +24,6 @@ func main() {
 	db := dbconfig.ConnectDB(config.DatabaseURL)
 	defer db.Close()
 
-	kilo
-
 	// Connect Redis
 	rdb := dbconfig.ConnectRedis()
 	defer func(rdb *redis.Client) {
