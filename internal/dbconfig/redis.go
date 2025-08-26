@@ -9,11 +9,11 @@ import (
 
 var Ctx = context.Background()
 
-// ConnectRedis initializes a Redis client
 func ConnectRedis() *redis.Client {
 	addr := getEnv("REDIS_ADDR", "localhost:6379")
-	password := getEnv("REDIS_PASSWORD", "") // no password by default
-	db := 0                                  // use default DB
+	password := getEnv("REDIS_PASSWORD", "")
+
+	db := 0
 
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     addr,
@@ -21,12 +21,10 @@ func ConnectRedis() *redis.Client {
 		DB:       db,
 	})
 
-	// Test connection
-	_, err := rdb.Ping(Ctx).Result()
-	if err != nil {
-		panic(fmt.Sprintf("Failed to connect to Redis: %v", err))
+	// test connection
+	if err := rdb.Ping(context.Background()).Err(); err != nil {
+		panic(fmt.Sprintf("❌ Failed to connect to Redis: %v", err))
 	}
-
-	fmt.Println("Connected to Redis successfully")
+	fmt.Println("Connected to redis successfully")
 	return rdb
 }

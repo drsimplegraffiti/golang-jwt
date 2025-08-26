@@ -27,13 +27,13 @@ func (h *Handler) UserProfile() http.HandlerFunc {
 		}
 		userID := claims.UserID
 
-		// Check Redis cache first
+		// check the redis first
 		cacheKey := fmt.Sprintf("user:%d", userID)
 		if cached, err := h.Redis.Get(r.Context(), cacheKey).Result(); err == nil {
-			// Cached value exists
+			fmt.Println("Inside the redisc func")
 			var user store.User
 			if err := json.Unmarshal([]byte(cached), &user); err == nil {
-				successresponse.RespondWithSuccess(w, http.StatusOK, "success (from cache)", user)
+				successresponse.RespondWithSuccess(w, http.StatusOK, "success (from cache/redis)", user)
 				return
 			}
 		}
@@ -45,7 +45,7 @@ func (h *Handler) UserProfile() http.HandlerFunc {
 			return
 		}
 
-		// Save in Redis for next time
+		//set to redis
 		userJSON, _ := json.Marshal(user)
 		h.Redis.Set(r.Context(), cacheKey, userJSON, 5*time.Minute)
 
@@ -53,31 +53,8 @@ func (h *Handler) UserProfile() http.HandlerFunc {
 	}
 }
 
-// profile
-// func (h *Handler) UserProfile() http.HandlerFunc {
-//
-// 	return func(w http.ResponseWriter, r *http.Request) {
-// 		claims, ok := r.Context().Value(middlewares.UserClaimsKey).(*auth.Claims)
-// 		if !ok {
-// 			errorrhandler.RespondWithError(w, http.StatusBadRequest, "please login to continue")
-// 			return
-// 		}
-//
-// 		userID := claims.UserID
-//
-// 		user, err := h.Queries.GetUser(r.Context(), int32(userID))
-// 		if err != nil {
-// 			errorrhandler.RespondWithError(w, http.StatusNotFound, "user not found")
-// 			return
-// 		}
-//
-// 		successresponse.RespondWithSuccess(w, http.StatusOK, "success", user)
-// 	}
-// }
-
 // login a user
 func (h *Handler) LoginUserHandler() http.HandlerFunc {
-
 	return func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 
@@ -115,7 +92,6 @@ func (h *Handler) LoginUserHandler() http.HandlerFunc {
 		successresponse.RespondWithSuccess(w, http.StatusOK, "Login successful", map[string]string{
 			"token": token,
 		})
-
 	}
 }
 

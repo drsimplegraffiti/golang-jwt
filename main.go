@@ -24,9 +24,7 @@ func main() {
 	db := dbconfig.ConnectDB(config.DatabaseURL)
 	defer db.Close()
 
-	kilo
-
-	// Connect Redis
+	// Connect to redis
 	rdb := dbconfig.ConnectRedis()
 	defer func(rdb *redis.Client) {
 		_ = rdb.Close()
@@ -35,7 +33,7 @@ func main() {
 	// Initialize sqlc queries
 	queries := store.New(db)
 
-	// Create a new handler with queries with redis
+	// Create a new handler with queries
 	handler := handlers.NewHandlers(db, queries, rdb)
 
 	// Setup HTTP server and routes
