@@ -24,4 +24,8 @@ GET http://localhost:8081/users/1
 
 ###  user profile
 GET http://localhost:8081/users/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZXhwIjoxNzU2MjU5MTE2LCJpc3MiOiJnb3RlbXAifQ.eC5xB7h_R_Riepkf_z0joK_7rEtAZfRS0diGootVb5k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZXhwIjoxNzU3Mzk3NzMwLCJpc3MiOiJnb3RlbXAifQ.od9yTax_DJm-A1_5Lf-QDxSWitUZHS5MQ5-6orDuSJs
+
+### Logout 
+POST http://localhost:8081/users/session/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZXhwIjoxNzU3Mzk3NzMwLCJpc3MiOiJnb3RlbXAifQ.od9yTax_DJm-A1_5Lf-QDxSWitUZHS5MQ5-6orDuSJs

@@ -7,9 +7,11 @@ import (
 	"strings"
 
 	"gotemp/internal/auth"
+	"gotemp/internal/dbconfig"
 	"gotemp/internal/errorrhandler"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/redis/go-redis/v9"
 )
 
 // creates a custom type for context key to avoid collision
@@ -30,6 +32,16 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		// strips the Bearer from the Bearer token
 		tokenString := strings.TrimPrefix(authHeader, "Bearer ")
 		claims := &auth.Claims{}
+
+		// check Redis for blacklisted token
+		blacklisted, err := dbconfig.RedisClient.Get(r.Context(), tokenString).Result()
+		if err == nil && blacklisted == "blacklisted" {
+			errorrhandler.RespondWithError(w, http.StatusUnauthorized, "Token revoked")
+			return
+		} else if err != nil && err != redis.Nil {
+			errorrhandler.RespondWithError(w, http.StatusInternalServerError, "internal error")
+			return
+		}
 
 		// Parse the token and also validate it
 		token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {

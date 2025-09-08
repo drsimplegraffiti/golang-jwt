@@ -38,8 +38,8 @@ Gopkg.toml
 *.iml
 
 # Environment files
-.env
-.env.*
+# .env
+# .env.*
 
 # Go mod specific
 go.sum
