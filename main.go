@@ -30,7 +30,7 @@ func main() {
 		_ = rdb.Close()
 	}(rdb)
 
-	// Initialize sqlc queries
+	// Initialize sqlc queries.
 	queries := store.New(db)
 
 	// Create a new handler with queries
