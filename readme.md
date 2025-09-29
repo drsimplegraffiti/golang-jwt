@@ -32,3 +32,8 @@ sudo systemctl restart redis-server
 # Now Redis will be available at:
 localhost:6379
 ```
+
+
+```bash
+migrating to arch
+```
