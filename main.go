@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	// Load configuration
+	// Load configuration file
 	config, err := dbconfig.LoadConfig()
 	if err != nil {
 		log.Fatalf("Failed to load configuration: %v", err)
