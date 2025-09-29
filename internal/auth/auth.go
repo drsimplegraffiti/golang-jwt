@@ -1,8 +1,9 @@
 package auth
 
 import (
-	"github.com/dgrijalva/jwt-go"
 	"time"
+
+	"github.com/dgrijalva/jwt-go"
 )
 
 // Claims struct to include userID, username, and StandardClaims

@@ -26,6 +26,16 @@ GET http://localhost:8081/users/1
 GET http://localhost:8081/users/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZXhwIjoxNzU3Mzk3NzMwLCJpc3MiOiJnb3RlbXAifQ.od9yTax_DJm-A1_5Lf-QDxSWitUZHS5MQ5-6orDuSJs
 
-### Logout 
+### Logout
 POST http://localhost:8081/users/session/logout
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZXhwIjoxNzU3Mzk3NzMwLCJpc3MiOiJnb3RlbXAifQ.od9yTax_DJm-A1_5Lf-QDxSWitUZHS5MQ5-6orDuSJs
+
+
+### profile
+POST http://localhost:8081/upload
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6InRlc3R1c2VyIiwiZXhwIjoxNzU4Mjc0NzczLCJpc3MiOiJnb3RlbXAifQ.SY-d8spd4vaXlEBIFvdS6sQDGrh24EnBfaT3-X77pN8
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="profile_image"; filename="example.png"
+Content-Type: text/plain
